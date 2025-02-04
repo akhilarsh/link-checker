@@ -1,1 +1,1 @@
-# generic-web-tests
+# Check broken links on webpages
