@@ -2,6 +2,7 @@ import axios, { AxiosError } from 'axios';
 import * as cheerio from 'cheerio';
 import { URL } from 'url';
 import { logger } from './logger';
+import { getTimeout } from './config.utils';
 
 interface BaseLink {
   url: string;
@@ -79,7 +80,7 @@ class LinkChecker {
         try {
           const startTime = Date.now();
           const response = await axios.get(link, {
-            timeout: 10000,
+            timeout: getTimeout(),
             validateStatus: function (status) {
               return true;
             },

@@ -17,3 +17,11 @@ export function getMaxDepth() {
   }
   return parseInt(process.env.MAX_DEPTH);
 }
+
+export function getTimeout() {
+  if (!process.env.TIMEOUT) {
+    logger.error('TIMEOUT environment variable is not set');
+    return 10000;
+  }
+  return parseInt(process.env.TIMEOUT);
+}
