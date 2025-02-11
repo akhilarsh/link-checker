@@ -1,24 +1,26 @@
-import { logger } from './logger'
-import SinglePage from './checkBrokenLinks';
-import AllPages from './checkBrokenLinksRecursive'
+import WebsiteLinkScanner from './scan-multiple-pages';
+import { logger } from './logger';
+import { getBaseUrl, getMaxDepth } from './config.utils';
 
-async function main(url: string) {
+async function main() {
+  const scanner = new WebsiteLinkScanner();
+  const startUrl = getBaseUrl();
+  const maxDepth = getMaxDepth();
+
   try {
-    const checker = new SinglePage();
-    const stats = await checker.check(url);
-    return stats;
+    logger.info(`Starting scan from: ${startUrl}`);
+    logger.info(`Max depth: ${maxDepth}`);
+    const result = await scanner.scan(startUrl, maxDepth);
+    logger.info('Scan completed successfully');
   } catch (error) {
-    logger.error('Error:', error instanceof Error ? error.message : 'Unknown error');
-    throw error;
+    logger.error(`Scan failed: ${error}`);
+    process.exit(1);
   }
 }
 
-if (require.main === module) {
-  const startUrl = 'https://www.google.com/';
-  main(startUrl).catch(error => {
-    logger.error('Error:', error);
-    process.exit(1);
-  });
-}
+main();
 
 export default main;
+
+export { default as LinkChecker } from './scan-single-page';
+export { default as WebsiteLinkScanner } from './scan-multiple-pages';
