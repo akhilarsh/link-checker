@@ -20,7 +20,7 @@ A Node.js application that scans websites for broken links using a breadth-first
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/broken-link-checker.git
+   git clone https://github.com/akhilarsh/broken-link-checker.git
    cd broken-link-checker
    ```
 
@@ -41,7 +41,7 @@ A Node.js application that scans websites for broken links using a breadth-first
 | Variable   | Description                          | Default | Required |
 | ---------- | ------------------------------------ | ------- | -------- |
 | HOME_PAGE  | Starting URL for the scan            | -       | Yes      |
-| MAX_DEPTH  | Maximum depth for recursive scanning | 2       | No       |
+| MAX_DEPTH  | Maximum depth for recursive scanning | 1       | No       |
 | TIMEOUT_MS | Request timeout in milliseconds      | 10000   | No       |
 
 Example `.env` file:
